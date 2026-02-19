@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hillcrest Cinema | Black & Red Edition</title>
+    <style>
+        :root {
+            --bg-black: #050505;
+            --card-bg: #121212;
+            --accent-red: #ff0000;
+            --dark-red: #8b0000;
+            --text-main: #ffffff;
+            --text-dim: #cccccc;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background-color: #000;
+            padding: 25px 5%;
+            border-bottom: 3px solid var(--accent-red);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: var(--accent-red);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+.nav-link {
+            background-color: var(--accent-red);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: 10px;
+            transition: 0.3s;
+        }
+        /* Instructions Section */
+        .instructions-box {
+            background: linear-gradient(45deg, #1a0000, #000);
+            border: 1px solid var(--accent-red);
+            padding: 20px;
+            margin: 20px 5%;
+            border-radius: 8px;
+        }
+
+        .instructions-box h3 { color: var(--accent-red); margin-top: 0; }
+        .instructions-box ol { padding-left: 20px; color: var(--text-dim); }
+
+        /* Grid Layout */
+        .container { padding: 0 5% 50px 5%; }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px 0;
+            color: var(--text-main);
+            border-left: 5px solid var(--accent-red);
+            padding-left: 15px;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .movie-card {
+            background-color: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .movie-card:hover {
+            border-color: var(--accent-red);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+        }
+
+        .video-wrapper {
+            width: 100%;
+            height: 200px;
+            background: #000;
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+
+        .movie-info { padding: 15px; text-align: center; }
+        
+        .movie-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .watch-btn {
+            display: inline-block;
+            background-color: var(--accent-red);
+            color: white;
+            padding: 8px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .watch-btn:hover { background-color: var(--dark-red); }
+
+        footer { text-align: center; padding: 40px; color: #444; border-top: 1px solid #222; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Hillcrest Cinema</h1>
+    <nav>
+        <a href="games.html" class="nav-link nav-active">Games</a>
+    </nav>
+</header>
+
+<div class="instructions-box">
+    <h3>🚀 Access Help: How to Make a New Google Account</h3>
+    <p>If a movie won't load, you may need to sign in. To create a fresh account for watching:</p>
+    <ol>
+        <li>Go to <strong>[accounts.google.com/signup](https://accounts.google.com/signup)</strong>.</li>
+        <li>Enter your name and choose a new username/email.</li>
+        <li>Create a strong password and add your birthday.</li>
+        <li>Once signed in, refresh this page to watch your movies!</li>
+    </ol>
+</div>
+
+<div class="container">
+
+    <h2>Superhero Movies</h2>
+    <div class="movie-grid">
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1_qJqk2Ss1f45puz3xGQcdD1NxM3ipupj/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Ant-Man 1</div><a href="https://drive.google.com/file/d/1_qJqk2Ss1f45puz3xGQcdD1NxM3ipupj/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1AstKQ5KLX94k7RFIlsu2St9um8sS_w_M/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Ant-Man 2</div><a href="https://drive.google.com/file/d/1AstKQ5KLX94k7RFIlsu2St9um8sS_w_M/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1AW3Zm8256tzZ-37lmgYmIGse4knu8IdA/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Ant-Man 3</div><a href="https://drive.google.com/file/d/1AW3Zm8256tzZ-37lmgYmIGse4knu8IdA/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1_g_fq1MEbqXuapY_dxXSdohAx8zmxwOX/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">The Dark Knight</div><a href="https://drive.google.com/file/d/1_g_fq1MEbqXuapY_dxXSdohAx8zmxwOX/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1I94qWG6AAUfBzuLmksfBppnOP8Tu0-jp/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">The Amazing Spider-Man 2</div><a href="https://drive.google.com/file/d/1I94qWG6AAUfBzuLmksfBppnOP8Tu0-jp/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1u5u_-G0KReiP4Q4eHvx7qwb4jv6ZARdh/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Shazam</div><a href="https://drive.google.com/file/d/1u5u_-G0KReiP4Q4eHvx7qwb4jv6ZARdh/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/0B-uFeCO4yCFIZXNnLUg3cVdiU3M/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Guardians of the Galaxy Vol 2</div><a href="https://drive.google.com/file/d/0B-uFeCO4yCFIZXNnLUg3cVdiU3M/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1acFojGkY1Iv9EgcGSWEP-I3a8uYb-jhB/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Spider-Man: Far From Home</div><a href="https://drive.google.com/file/d/1acFojGkY1Iv9EgcGSWEP-I3a8uYb-jhB/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/0BxvqXivT-hg5d2VmZDdsNlBNUzQ/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">X-Men Origins: Wolverine</div><a href="https://drive.google.com/file/d/0BxvqXivT-hg5d2VmZDdsNlBNUzQ/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+    </div>
+
+    <h2>Action Movies</h2>
+    <div class="movie-grid">
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1X9Kflcg0LuRjceV6JghCzs49px8cRTIk/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">John Wick 1</div><a href="https://drive.google.com/file/d/1X9Kflcg0LuRjceV6JghCzs49px8cRTIk/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1gzsZEVTNEb93tSa0nuzlpR2n20D4Dyx9/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">John Wick 2</div><a href="https://drive.google.com/file/d/1gzsZEVTNEb93tSa0nuzlpR2n20D4Dyx9/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1CsIZrKGXn557DdOJrdz5ty7nkg0i4CWR/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">John Wick 3</div><a href="https://drive.google.com/file/d/1CsIZrKGXn557DdOJrdz5ty7nkg0i4CWR/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/10LUlcX6Hu9pn3c3xmPlfJOf20Qjwgxq_/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">John Wick 4</div><a href="https://drive.google.com/file/d/10LUlcX6Hu9pn3c3xmPlfJOf20Qjwgxq_/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/16tKuEYtxi7EeKtX3yZZR-nXgZ_oGTxXS/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Avatar</div><a href="https://drive.google.com/file/d/16tKuEYtxi7EeKtX3yZZR-nXgZ_oGTxXS/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1NPB0oCsIuiPAc471b_XOGDnchbCZ72yh/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Ford V Ferrari</div><a href="https://drive.google.com/file/d/1NPB0oCsIuiPAc471b_XOGDnchbCZ72yh/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1nmGDHktR96jkaYl2lf-d-XTtNtFh4PTv/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Top Gun: Maverick</div><a href="https://drive.google.com/file/d/1nmGDHktR96jkaYl2lf-d-XTtNtFh4PTv/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/13d5gq3Kx3koobcfRTVyH9Hhum3s8Fxag/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Venom: Let There Be Carnage</div><a href="https://drive.google.com/file/d/13d5gq3Kx3koobcfRTVyH9Hhum3s8Fxag/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1ZwP0FLdFdAoeskqGvQYX5CwqEeSFWS1G/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Back to The Future</div><a href="https://drive.google.com/file/d/1ZwP0FLdFdAoeskqGvQYX5CwqEeSFWS1G/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+    </div>
+
+    <h2>Animated Movies</h2>
+    <div class="movie-grid">
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1ZJWkqS6Y5XO6bRrgCH88rgQZR848Lr8V/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Minions</div><a href="https://drive.google.com/file/d/1ZJWkqS6Y5XO6bRrgCH88rgQZR848Lr8V/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1KDDDkhqdiwnoXUw9aYc4WdBfprqPX6pE/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Despicable Me</div><a href="https://drive.google.com/file/d/1KDDDkhqdiwnoXUw9aYc4WdBfprqPX6pE/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1Ft-mWElx-1rZzIXJBswt_HQ-1VrZ4th2/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Shrek 2</div><a href="https://drive.google.com/file/d/1Ft-mWElx-1rZzIXJBswt_HQ-1VrZ4th2/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/18k9mTY7zM45nsFrfAmu5thQH6ao77O--/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Into the Spider-Verse</div><a href="https://drive.google.com/file/d/18k9mTY7zM45nsFrfAmu5thQH6ao77O--/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/17mETnDL0Z4M-ke4aw9Oouuf9w8xQkfIb/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Encanto</div><a href="https://drive.google.com/file/d/17mETnDL0Z4M-ke4aw9Oouuf9w8xQkfIb/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1VcUlwoH5kBsHK6vYEMYMJuhpYgTCng20/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Luca</div><a href="https://drive.google.com/file/d/1VcUlwoH5kBsHK6vYEMYMJuhpYgTCng20/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+    </div>
+
+    <h2>Comedy & Horror</h2>
+    <div class="movie-grid">
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1drXS4b8XjDqgQ6tIjbS7RCN1Yq8CjDLZ/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Deadpool</div><a href="https://drive.google.com/file/d/1drXS4b8XjDqgQ6tIjbS7RCN1Yq8CjDLZ/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1gfcCCnkSzRhuIdMh2oNE3s1_G7Q_NGMM/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Friday The 13th</div><a href="https://drive.google.com/file/d/1gfcCCnkSzRhuIdMh2oNE3s1_G7Q_NGMM/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+        <div class="movie-card">
+            <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1Jn-9YsKif3wVxnDfH3ZW3HwSq1iTyb6r/preview"></iframe></div>
+            <div class="movie-info"><div class="movie-title">Space Jam (1996)</div><a href="https://drive.google.com/file/d/1Jn-9YsKif3wVxnDfH3ZW3HwSq1iTyb6r/view" target="_blank" class="watch-btn">Full Screen</a></div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2026 Hillcrest Cinema | Private Member Access
+</footer>
+
+</body>
+</html>
