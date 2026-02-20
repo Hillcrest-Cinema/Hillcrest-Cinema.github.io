@@ -22,7 +22,6 @@
             padding: 0;
         }
 
-        /* Header */
         header {
             background-color: #000;
             padding: 25px 5%;
@@ -44,17 +43,16 @@
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
-.nav-link {
+        .nav-link {
             background-color: var(--accent-red);
             color: white;
             text-decoration: none;
             padding: 10px 20px;
             border-radius: 5px;
             font-weight: bold;
-            margin-left: 10px;
             transition: 0.3s;
         }
-        /* Instructions Section */
+
         .instructions-box {
             background: linear-gradient(45deg, #1a0000, #000);
             border: 1px solid var(--accent-red);
@@ -66,7 +64,6 @@
         .instructions-box h3 { color: var(--accent-red); margin-top: 0; }
         .instructions-box ol { padding-left: 20px; color: var(--text-dim); }
 
-        /* Grid Layout */
         .container { padding: 0 5% 50px 5%; }
         
         h2 {
@@ -101,6 +98,7 @@
             width: 100%;
             height: 200px;
             background: #000;
+            pointer-events: none; /* Prevents playing inside the small preview */
         }
 
         iframe { width: 100%; height: 100%; border: none; }
@@ -120,15 +118,54 @@
             display: inline-block;
             background-color: var(--accent-red);
             color: white;
-            padding: 8px 20px;
-            text-decoration: none;
+            padding: 10px 25px;
+            border: none;
             border-radius: 5px;
             font-weight: bold;
             font-size: 0.9rem;
+            cursor: pointer;
             transition: 0.2s;
         }
 
-        .watch-btn:hover { background-color: var(--dark-red); }
+        .watch-btn:hover { background-color: var(--dark-red); transform: scale(1.05); }
+
+        /* MODAL (POP-UP) STYLES */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 1100px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border: 2px solid var(--accent-red);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .close-btn:hover { color: var(--accent-red); }
 
         footer { text-align: center; padding: 40px; color: #444; border-top: 1px solid #222; }
     </style>
@@ -137,20 +174,12 @@
 
 <header>
     <h1>Hillcrest Cinema</h1>
-    <nav>
-        <a href="games.html" class="nav-link nav-active">Games</a>
-    </nav>
+    <nav><a href="games.html" class="nav-link">Games</a></nav>
 </header>
 
 <div class="instructions-box">
-    <h3>🚀 Access Help: How to Make a New Google Account</h3>
-    <p>If a movie won't load, you may need to sign in. To create a fresh account for watching:</p>
-    <ol>
-        <li>Go to <strong>[accounts.google.com/signup](https://accounts.google.com/signup)</strong>.</li>
-        <li>Enter your name and choose a new username/email.</li>
-        <li>Create a strong password and add your birthday.</li>
-        <li>Once signed in, refresh this page to watch your movies!</li>
-    </ol>
+    <h3>🚀 Access Help</h3>
+    <p>Movies not loading? You must be signed into Google. <a href="https://accounts.google.com/signup" target="_blank" style="color:var(--accent-red)">Click here to sign in</a>, then refresh this page.</p>
 </div>
 
 <div class="container">
@@ -159,39 +188,39 @@
     <div class="movie-grid">
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1_qJqk2Ss1f45puz3xGQcdD1NxM3ipupj/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Ant-Man 1</div><a href="https://drive.google.com/file/d/1_qJqk2Ss1f45puz3xGQcdD1NxM3ipupj/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Ant-Man 1</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1_qJqk2Ss1f45puz3xGQcdD1NxM3ipupj/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1AstKQ5KLX94k7RFIlsu2St9um8sS_w_M/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Ant-Man 2</div><a href="https://drive.google.com/file/d/1AstKQ5KLX94k7RFIlsu2St9um8sS_w_M/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Ant-Man 2</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1AstKQ5KLX94k7RFIlsu2St9um8sS_w_M/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1AW3Zm8256tzZ-37lmgYmIGse4knu8IdA/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Ant-Man 3</div><a href="https://drive.google.com/file/d/1AW3Zm8256tzZ-37lmgYmIGse4knu8IdA/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Ant-Man 3</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1AW3Zm8256tzZ-37lmgYmIGse4knu8IdA/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1_g_fq1MEbqXuapY_dxXSdohAx8zmxwOX/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">The Dark Knight</div><a href="https://drive.google.com/file/d/1_g_fq1MEbqXuapY_dxXSdohAx8zmxwOX/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">The Dark Knight</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1_g_fq1MEbqXuapY_dxXSdohAx8zmxwOX/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1I94qWG6AAUfBzuLmksfBppnOP8Tu0-jp/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">The Amazing Spider-Man 2</div><a href="https://drive.google.com/file/d/1I94qWG6AAUfBzuLmksfBppnOP8Tu0-jp/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">The Amazing Spider-Man 2</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1I94qWG6AAUfBzuLmksfBppnOP8Tu0-jp/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1u5u_-G0KReiP4Q4eHvx7qwb4jv6ZARdh/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Shazam</div><a href="https://drive.google.com/file/d/1u5u_-G0KReiP4Q4eHvx7qwb4jv6ZARdh/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Shazam</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1u5u_-G0KReiP4Q4eHvx7qwb4jv6ZARdh/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/0B-uFeCO4yCFIZXNnLUg3cVdiU3M/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Guardians of the Galaxy Vol 2</div><a href="https://drive.google.com/file/d/0B-uFeCO4yCFIZXNnLUg3cVdiU3M/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Guardians of the Galaxy Vol 2</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/0B-uFeCO4yCFIZXNnLUg3cVdiU3M/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1acFojGkY1Iv9EgcGSWEP-I3a8uYb-jhB/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Spider-Man: Far From Home</div><a href="https://drive.google.com/file/d/1acFojGkY1Iv9EgcGSWEP-I3a8uYb-jhB/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Spider-Man: Far From Home</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1acFojGkY1Iv9EgcGSWEP-I3a8uYb-jhB/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/0BxvqXivT-hg5d2VmZDdsNlBNUzQ/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">X-Men Origins: Wolverine</div><a href="https://drive.google.com/file/d/0BxvqXivT-hg5d2VmZDdsNlBNUzQ/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">X-Men Origins: Wolverine</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/0BxvqXivT-hg5d2VmZDdsNlBNUzQ/preview')">Watch Now</button></div>
         </div>
     </div>
 
@@ -199,39 +228,39 @@
     <div class="movie-grid">
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1X9Kflcg0LuRjceV6JghCzs49px8cRTIk/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">John Wick 1</div><a href="https://drive.google.com/file/d/1X9Kflcg0LuRjceV6JghCzs49px8cRTIk/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">John Wick 1</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1X9Kflcg0LuRjceV6JghCzs49px8cRTIk/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1gzsZEVTNEb93tSa0nuzlpR2n20D4Dyx9/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">John Wick 2</div><a href="https://drive.google.com/file/d/1gzsZEVTNEb93tSa0nuzlpR2n20D4Dyx9/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">John Wick 2</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1gzsZEVTNEb93tSa0nuzlpR2n20D4Dyx9/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1CsIZrKGXn557DdOJrdz5ty7nkg0i4CWR/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">John Wick 3</div><a href="https://drive.google.com/file/d/1CsIZrKGXn557DdOJrdz5ty7nkg0i4CWR/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">John Wick 3</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1CsIZrKGXn557DdOJrdz5ty7nkg0i4CWR/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/10LUlcX6Hu9pn3c3xmPlfJOf20Qjwgxq_/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">John Wick 4</div><a href="https://drive.google.com/file/d/10LUlcX6Hu9pn3c3xmPlfJOf20Qjwgxq_/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">John Wick 4</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/10LUlcX6Hu9pn3c3xmPlfJOf20Qjwgxq_/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/16tKuEYtxi7EeKtX3yZZR-nXgZ_oGTxXS/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Avatar</div><a href="https://drive.google.com/file/d/16tKuEYtxi7EeKtX3yZZR-nXgZ_oGTxXS/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Avatar</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/16tKuEYtxi7EeKtX3yZZR-nXgZ_oGTxXS/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1NPB0oCsIuiPAc471b_XOGDnchbCZ72yh/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Ford V Ferrari</div><a href="https://drive.google.com/file/d/1NPB0oCsIuiPAc471b_XOGDnchbCZ72yh/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Ford V Ferrari</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1NPB0oCsIuiPAc471b_XOGDnchbCZ72yh/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1nmGDHktR96jkaYl2lf-d-XTtNtFh4PTv/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Top Gun: Maverick</div><a href="https://drive.google.com/file/d/1nmGDHktR96jkaYl2lf-d-XTtNtFh4PTv/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Top Gun: Maverick</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1nmGDHktR96jkaYl2lf-d-XTtNtFh4PTv/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/13d5gq3Kx3koobcfRTVyH9Hhum3s8Fxag/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Venom: Let There Be Carnage</div><a href="https://drive.google.com/file/d/13d5gq3Kx3koobcfRTVyH9Hhum3s8Fxag/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Venom: Let There Be Carnage</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/13d5gq3Kx3koobcfRTVyH9Hhum3s8Fxag/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1ZwP0FLdFdAoeskqGvQYX5CwqEeSFWS1G/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Back to The Future</div><a href="https://drive.google.com/file/d/1ZwP0FLdFdAoeskqGvQYX5CwqEeSFWS1G/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Back to The Future</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1ZwP0FLdFdAoeskqGvQYX5CwqEeSFWS1G/preview')">Watch Now</button></div>
         </div>
     </div>
 
@@ -239,27 +268,27 @@
     <div class="movie-grid">
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1ZJWkqS6Y5XO6bRrgCH88rgQZR848Lr8V/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Minions</div><a href="https://drive.google.com/file/d/1ZJWkqS6Y5XO6bRrgCH88rgQZR848Lr8V/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Minions</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1ZJWkqS6Y5XO6bRrgCH88rgQZR848Lr8V/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1KDDDkhqdiwnoXUw9aYc4WdBfprqPX6pE/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Despicable Me</div><a href="https://drive.google.com/file/d/1KDDDkhqdiwnoXUw9aYc4WdBfprqPX6pE/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Despicable Me</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1KDDDkhqdiwnoXUw9aYc4WdBfprqPX6pE/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1Ft-mWElx-1rZzIXJBswt_HQ-1VrZ4th2/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Shrek 2</div><a href="https://drive.google.com/file/d/1Ft-mWElx-1rZzIXJBswt_HQ-1VrZ4th2/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Shrek 2</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1Ft-mWElx-1rZzIXJBswt_HQ-1VrZ4th2/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/18k9mTY7zM45nsFrfAmu5thQH6ao77O--/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Into the Spider-Verse</div><a href="https://drive.google.com/file/d/18k9mTY7zM45nsFrfAmu5thQH6ao77O--/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Into the Spider-Verse</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/18k9mTY7zM45nsFrfAmu5thQH6ao77O--/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/17mETnDL0Z4M-ke4aw9Oouuf9w8xQkfIb/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Encanto</div><a href="https://drive.google.com/file/d/17mETnDL0Z4M-ke4aw9Oouuf9w8xQkfIb/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Encanto</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/17mETnDL0Z4M-ke4aw9Oouuf9w8xQkfIb/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1VcUlwoH5kBsHK6vYEMYMJuhpYgTCng20/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Luca</div><a href="https://drive.google.com/file/d/1VcUlwoH5kBsHK6vYEMYMJuhpYgTCng20/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Luca</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1VcUlwoH5kBsHK6vYEMYMJuhpYgTCng20/preview')">Watch Now</button></div>
         </div>
     </div>
 
@@ -267,23 +296,54 @@
     <div class="movie-grid">
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1drXS4b8XjDqgQ6tIjbS7RCN1Yq8CjDLZ/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Deadpool</div><a href="https://drive.google.com/file/d/1drXS4b8XjDqgQ6tIjbS7RCN1Yq8CjDLZ/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Deadpool</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1drXS4b8XjDqgQ6tIjbS7RCN1Yq8CjDLZ/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1gfcCCnkSzRhuIdMh2oNE3s1_G7Q_NGMM/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Friday The 13th</div><a href="https://drive.google.com/file/d/1gfcCCnkSzRhuIdMh2oNE3s1_G7Q_NGMM/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Friday The 13th</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1gfcCCnkSzRhuIdMh2oNE3s1_G7Q_NGMM/preview')">Watch Now</button></div>
         </div>
         <div class="movie-card">
             <div class="video-wrapper"><iframe src="https://drive.google.com/file/d/1Jn-9YsKif3wVxnDfH3ZW3HwSq1iTyb6r/preview"></iframe></div>
-            <div class="movie-info"><div class="movie-title">Space Jam (1996)</div><a href="https://drive.google.com/file/d/1Jn-9YsKif3wVxnDfH3ZW3HwSq1iTyb6r/view" target="_blank" class="watch-btn">Full Screen</a></div>
+            <div class="movie-info"><div class="movie-title">Space Jam (1996)</div><button class="watch-btn" onclick="openMovie('https://drive.google.com/file/d/1Jn-9YsKif3wVxnDfH3ZW3HwSq1iTyb6r/preview')">Watch Now</button></div>
         </div>
     </div>
 
 </div>
 
+<div id="movieModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeMovie()">✕ Close Player</span>
+        <iframe id="moviePlayer" src="" allow="autoplay; fullscreen"></iframe>
+    </div>
+</div>
+
 <footer>
     &copy; 2026 Hillcrest Cinema | Private Member Access
 </footer>
+
+<script>
+    const modal = document.getElementById('movieModal');
+    const player = document.getElementById('moviePlayer');
+
+    function openMovie(url) {
+        modal.style.display = "block";
+        player.src = url;
+        document.body.style.overflow = "hidden"; // Stop scrolling main page
+    }
+
+    function closeMovie() {
+        modal.style.display = "none";
+        player.src = ""; // Stops the video
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+    }
+
+    // Close if user clicks background
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeMovie();
+        }
+    }
+</script>
 
 </body>
 </html>
