@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.greenville.k12.sc.us/hillcrest/images/logo.png">
     <title>Hillcrest Cinema | Arcade</title>
     <style>
         :root {
@@ -19,11 +20,12 @@
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
 
         header {
             background-color: #000;
-            padding: 25px 5%;
+            padding: 20px 5%;
             border-bottom: 3px solid var(--accent-red);
             position: sticky;
             top: 0;
@@ -33,38 +35,68 @@
             align-items: center;
         }
 
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-left img {
+            height: 50px;
+            width: auto;
+        }
+
         header h1 {
             color: var(--accent-red);
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        /* UPDATED NAV STYLING */
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .nav-link {
             background-color: var(--accent-red);
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 5px;
             font-weight: bold;
+            font-size: 0.85rem;
             transition: 0.3s;
+            white-space: nowrap;
         }
 
-        .container { padding: 0 5% 50px 5%; }
-        
+        .nav-link:hover { background-color: white; color: var(--accent-red); }
+
+        .container {
+            padding: 40px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         h2 {
             font-size: 1.8rem;
-            margin: 40px 0 20px 0;
+            margin-bottom: 25px;
             color: var(--text-main);
             border-left: 5px solid var(--accent-red);
             padding-left: 15px;
+            align-self: flex-start;
         }
 
         .game-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
+            width: 100%;
         }
 
         .game-card {
@@ -120,7 +152,6 @@
             cursor: pointer;
         }
 
-        /* MODAL PLAYER */
         .modal {
             display: none; 
             position: fixed;
@@ -133,7 +164,7 @@
             position: relative;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 95%; height: 90vh;
+            width: 95%; height: 85vh;
             max-width: 1200px;
             background: #000;
             border: 2px solid var(--accent-red);
@@ -153,8 +184,16 @@
 <body>
 
 <header>
-    <h1>Hillcrest Arcade [Update 1.2]</h1>
-    <nav><a href="index.html" class="nav-link">Movies</a></nav>
+    <div class="header-left">
+        <img src="https://www.greenville.k12.sc.us/hillcrest/images/logo.png" alt="Hillcrest Logo">
+        <h1>Hillcrest Arcade</h1>
+    </div>
+    <nav>
+        <a href="index.html" class="nav-link">Movies</a>
+        <a href="forms.html" class="nav-link">Report</a>
+        <a href="links.html" class="nav-link">Links</a>
+        <a href="settings.html" class="nav-link">Settings</a>
+    </nav>
 </header>
 
 <div class="container">
@@ -262,6 +301,44 @@
     window.onclick = function(event) {
         if (event.target == modal) { closeGame(); }
     }
+</script>
+
+<script>
+    (function() {
+        const saved = JSON.parse(localStorage.getItem('hcSettings'));
+        if (saved) {
+            // 1. Apply Accent Color
+            if (saved.accent) {
+                document.documentElement.style.setProperty('--accent-red', saved.accent);
+            }
+            
+            // 2. Apply Font
+            if (saved.font) {
+                document.body.style.fontFamily = saved.font;
+            }
+            
+            // 3. Apply Tab Cloaking (Name & Icon)
+            if (saved.tabName) {
+                document.title = saved.tabName;
+            }
+            if (saved.tabIcon) {
+                let link = document.querySelector("link[rel~='icon']");
+                if (!link) {
+                    link = document.createElement('link');
+                    link.rel = 'icon';
+                    document.head.appendChild(link);
+                }
+                link.href = saved.tabIcon;
+            }
+            
+            // 4. Panic Button (Escape Key)
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && saved.panic) {
+                    window.location.href = saved.panic;
+                }
+            });
+        }
+    })();
 </script>
 
 </body>
