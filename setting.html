@@ -1,1 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.greenville.k12.sc.us/hillcrest/images/logo.png">
+    <title>Hillcrest Cinema | Settings</title>
+    <style>
+        :root {
+            --bg-black: #050505;
+            --card-bg: #121212;
+            --accent-red: #ff0000;
+            --text-main: #ffffff;
+        }
 
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #000;
+            padding: 20px 5%;
+            border-bottom: 3px solid var(--accent-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .header-left img { height: 50px; }
+        header h1 { color: var(--accent-red); margin: 0; text-transform: uppercase; letter-spacing: 3px; font-size: 1.8rem; }
+
+        nav { display: flex; gap: 10px; }
+        .nav-link {
+            background-color: var(--accent-red); color: white; text-decoration: none;
+            padding: 8px 15px; border-radius: 5px; font-weight: bold; font-size: 0.85rem;
+        }
+
+        .container { padding: 40px 5%; max-width: 800px; margin: auto; }
+
+        .settings-card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .setting-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--accent-red); }
+
+        input[type="text"], input[type="color"], select {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .btn-save {
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn-save:hover { opacity: 0.8; }
+
+        p.hint { font-size: 0.8rem; color: #777; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <img src="https://www.greenville.k12.sc.us/hillcrest/images/logo.png" alt="Logo">
+        <h1>Hillcrest Settings</h1>
+    </div>
+    <nav>
+        <a href="index.html" class="nav-link">Movies</a>
+        <a href="games.html" class="nav-link">Games</a>
+        <a href="forms.html" class="nav-link">report</a>
+        <a href="links.html" class="nav-link">Links</a>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="settings-card">
+        <h2>Appearance</h2>
+        
+        <div class="setting-group">
+            <label>Theme Accent Color</label>
+            <input type="color" id="accentColor" value="#ff0000">
+            <p class="hint">Changes buttons, headers, and borders.</p>
+        </div>
+
+        <div class="setting-group">
+            <label>Font Style</label>
+            <select id="fontSelect">
+                <option value="'Segoe UI', Arial, sans-serif">Standard (Segoe UI)</option>
+                <option value="'Courier New', monospace">Retro (Monospace)</option>
+                <option value="'Georgia', serif">Classic (Serif)</option>
+                <option value="cursive">Playful (Cursive)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="settings-card">
+        <h2>Tab Cloaking & Stealth</h2>
+        
+        <div class="setting-group">
+            <label>Custom Tab Name</label>
+            <input type="text" id="tabName" placeholder="e.g., Google Classroom">
+        </div>
+
+        <div class="setting-group">
+            <label>Custom Tab Icon (URL)</label>
+            <input type="text" id="tabIcon" placeholder="Link to a .png or .ico file">
+        </div>
+
+        <div class="setting-group">
+            <label>Quick Escape Link</label>
+            <input type="text" id="panicLink" placeholder="https://google.com">
+            <p class="hint">Press <b>ESC</b> at any time to instantly redirect to this link.</p>
+        </div>
+
+        <button class="btn-save" onclick="saveSettings()">Apply Settings</button>
+    </div>
+</div>
+
+<script>
+    function saveSettings() {
+        const settings = {
+            accent: document.getElementById('accentColor').value,
+            font: document.getElementById('fontSelect').value,
+            tabName: document.getElementById('tabName').value,
+            tabIcon: document.getElementById('tabIcon').value,
+            panic: document.getElementById('panicLink').value
+        };
+        
+        localStorage.setItem('hcSettings', JSON.stringify(settings));
+        alert('Settings Saved! Refreshing page to apply...');
+        location.reload();
+    }
+
+    // Load current settings into inputs on page load
+    window.onload = function() {
+        const saved = JSON.parse(localStorage.getItem('hcSettings'));
+        if (saved) {
+            if(saved.accent) document.getElementById('accentColor').value = saved.accent;
+            if(saved.font) document.getElementById('fontSelect').value = saved.font;
+            if(saved.tabName) document.getElementById('tabName').value = saved.tabName;
+            if(saved.tabIcon) document.getElementById('tabIcon').value = saved.tabIcon;
+            if(saved.panic) document.getElementById('panicLink').value = saved.panic;
+        }
+    };
+</script>
+
+<script>
+    (function() {
+        const saved = JSON.parse(localStorage.getItem('hcSettings'));
+        if (saved) {
+            // 1. Apply Accent Color
+            if (saved.accent) {
+                document.documentElement.style.setProperty('--accent-red', saved.accent);
+            }
+            
+            // 2. Apply Font
+            if (saved.font) {
+                document.body.style.fontFamily = saved.font;
+            }
+            
+            // 3. Apply Tab Cloaking (Name & Icon)
+            if (saved.tabName) {
+                document.title = saved.tabName;
+            }
+            if (saved.tabIcon) {
+                let link = document.querySelector("link[rel~='icon']");
+                if (!link) {
+                    link = document.createElement('link');
+                    link.rel = 'icon';
+                    document.head.appendChild(link);
+                }
+                link.href = saved.tabIcon;
+            }
+            
+            // 4. Panic Button (Escape Key)
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && saved.panic) {
+                    window.location.href = saved.panic;
+                }
+            });
+        }
+    })();
+</script>
+
+</body>
+</html>
