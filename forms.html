@@ -135,12 +135,12 @@
 </header>
 
 <div class="container">
-    <h2>Report Issues</h2>
+    <h2>Report Issues & Request Movies & Games</h2>
     
     <div class="form-wrapper">
         <iframe 
             class="google-form"
-            src="https://docs.google.com/forms/d/e/1FAIpQLSf4uF6XF-M92_8T9yQ-q_zTqW6S_Uq_m0O_xG5eK3U9N_V1vJpP5G_X9A/viewform?embedded=true">
+            src="https://docs.google.com/forms/d/e/1FAIpQLScyv1-vA01xP3XW-Z8P_L_Y0E_xG5eK3U9N_V1vJpP5G_X9A/viewform?embedded=true">
             Loading…
         </iframe>
     </div>
@@ -152,17 +152,12 @@
     (function() {
         const saved = JSON.parse(localStorage.getItem('hcSettings'));
         if (saved) {
-            // 1. Apply Accent Color
             if (saved.accent) {
                 document.documentElement.style.setProperty('--accent-red', saved.accent);
             }
-            
-            // 2. Apply Font
             if (saved.font) {
                 document.body.style.fontFamily = saved.font;
             }
-            
-            // 3. Apply Tab Cloaking (Name & Icon)
             if (saved.tabName) {
                 document.title = saved.tabName;
             }
@@ -175,8 +170,6 @@
                 }
                 link.href = saved.tabIcon;
             }
-            
-            // 4. Panic Button (Escape Key)
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && saved.panic) {
                     window.location.href = saved.panic;
