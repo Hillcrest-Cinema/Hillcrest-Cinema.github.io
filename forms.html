@@ -1,1 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.greenville.k12.sc.us/hillcrest/images/logo.png">
+    <title>Hillcrest Cinema | Report</title>
+    <style>
+        :root {
+            --bg-black: #050505;
+            --card-bg: #121212;
+            --accent-red: #ff0000;
+            --text-main: #ffffff;
+            --text-dim: #cccccc;
+        }
 
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #000;
+            padding: 20px 5%;
+            border-bottom: 3px solid var(--accent-red);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-left img {
+            height: 50px;
+            width: auto;
+        }
+
+        header h1 {
+            color: var(--accent-red);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            background-color: var(--accent-red);
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover { 
+            background-color: white; 
+            color: var(--accent-red); 
+        }
+
+        .container {
+            padding: 40px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--text-main);
+            border-left: 5px solid var(--accent-red);
+            padding-left: 15px;
+            align-self: flex-start;
+        }
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 800px;
+            background: var(--card-bg);
+            border: 2px solid #222;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.1);
+        }
+
+        iframe.google-form {
+            width: 100%;
+            height: 900px;
+            border: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #444;
+            border-top: 1px solid #222;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <img src="https://www.greenville.k12.sc.us/hillcrest/images/logo.png" alt="Hillcrest Logo">
+        <h1>Hillcrest Report</h1>
+    </div>
+    <nav>
+        <a href="index.html" class="nav-link">Movies</a>
+        <a href="games.html" class="nav-link">Games</a>
+        <a href="links.html" class="nav-link">Links</a>
+        <a href="settings.html" class="nav-link">Settings</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Report Issues</h2>
+    
+    <div class="form-wrapper">
+        <iframe 
+            class="google-form"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSf4uF6XF-M92_8T9yQ-q_zTqW6S_Uq_m0O_xG5eK3U9N_V1vJpP5G_X9A/viewform?embedded=true">
+            Loading…
+        </iframe>
+    </div>
+</div>
+
+<footer>&copy; 2026 Hillcrest Cinema | Community Support</footer>
+
+<script>
+    (function() {
+        const saved = JSON.parse(localStorage.getItem('hcSettings'));
+        if (saved) {
+            // 1. Apply Accent Color
+            if (saved.accent) {
+                document.documentElement.style.setProperty('--accent-red', saved.accent);
+            }
+            
+            // 2. Apply Font
+            if (saved.font) {
+                document.body.style.fontFamily = saved.font;
+            }
+            
+            // 3. Apply Tab Cloaking (Name & Icon)
+            if (saved.tabName) {
+                document.title = saved.tabName;
+            }
+            if (saved.tabIcon) {
+                let link = document.querySelector("link[rel~='icon']");
+                if (!link) {
+                    link = document.createElement('link');
+                    link.rel = 'icon';
+                    document.head.appendChild(link);
+                }
+                link.href = saved.tabIcon;
+            }
+            
+            // 4. Panic Button (Escape Key)
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && saved.panic) {
+                    window.location.href = saved.panic;
+                }
+            });
+        }
+    })();
+</script>
+
+</body>
+</html>
