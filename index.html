@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://www.greenville.k12.sc.us/hillcrest/images/logo.png">
     <title>Hillcrest Cinema | Movies</title>
     <style>
         :root {
             --bg-black: #050505;
             --card-bg: #121212;
             --accent-red: #ff0000;
-            --dark-red: #8b0000;
             --text-main: #ffffff;
             --text-dim: #cccccc;
         }
@@ -24,7 +24,7 @@
 
         header {
             background-color: #000;
-            padding: 25px 5%;
+            padding: 20px 5%;
             border-bottom: 3px solid var(--accent-red);
             position: sticky;
             top: 0;
@@ -34,24 +34,44 @@
             align-items: center;
         }
 
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-left img {
+            height: 50px;
+            width: auto;
+        }
+
         header h1 {
             color: var(--accent-red);
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 2rem;
+            letter-spacing: 3px;
+            font-size: 1.8rem;
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .nav-link {
             background-color: var(--accent-red);
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 5px;
             font-weight: bold;
+            font-size: 0.85rem;
             transition: 0.3s;
         }
+
+        .nav-link:hover { background-color: white; color: var(--accent-red); }
 
         .container { padding: 0 5% 50px 5%; }
         
@@ -99,7 +119,7 @@
             object-fit: cover;
         }
 
-        .movie-info { padding: 12px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .movie-info { padding: 12px; text-align: center; flex-grow: 1; }
         
         .movie-title {
             font-weight: bold;
@@ -122,20 +142,6 @@
             cursor: pointer;
         }
 
-        /* INSTRUCTIONS BOX */
-        .instructions-box {
-            background: linear-gradient(45deg, #1a0000, #000);
-            border: 1px solid var(--accent-red);
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-            text-align: left;
-        }
-
-        .instructions-box h3 { color: var(--accent-red); margin-top: 0; font-size: 1.1rem; }
-        .instructions-box p { color: var(--text-main); font-size: 0.9rem; }
-        .instructions-box ol { padding-left: 20px; color: var(--text-dim); font-size: 0.85rem; }
-
         /* MODAL PLAYER */
         .modal {
             display: none; 
@@ -143,7 +149,7 @@
             z-index: 9999;
             left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.95);
-            overflow-y: auto; /* Allow scrolling for help box */
+            overflow-y: auto;
             padding: 50px 0;
         }
 
@@ -152,7 +158,6 @@
             margin: auto;
             width: 90%; 
             max-width: 1100px;
-            background: transparent;
         }
 
         .video-container {
@@ -172,8 +177,6 @@
             font-weight: bold;
         }
 
-        .close-btn:hover { color: var(--accent-red); }
-
         iframe { width: 100%; height: 100%; border: none; }
         footer { text-align: center; padding: 40px; color: #444; border-top: 1px solid #222; }
     </style>
@@ -181,37 +184,65 @@
 <body>
 
 <header>
-    <h1>Hillcrest Cinema [Update 1.2]</h1>
-    <nav><a href="games.html" class="nav-link">Games</a></nav>
+    <div class="header-left">
+        <img src="https://www.greenville.k12.sc.us/hillcrest/images/logo.png" alt="Hillcrest Logo">
+        <h1>Hillcrest Cinema</h1>
+    </div>
+    <nav>
+        <a href="games.html" class="nav-link">Games</a>
+        <a href="forms.html" class="nav-link">report</a>
+        <a href="links.html" class="nav-link">Links</a>
+        <a href="settings.html" class="nav-link">Settings</a>
+    </nav>
 </header>
 
 <div class="container">
+    
+    <div id="movieModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeMovie()">✕ CLOSE PLAYER</span>
+        <div class="video-container">
+            <iframe id="moviePlayer" src="" allow="autoplay; fullscreen"></iframe>
+        </div>
+
+        <div class="instructions-box" style="background: #1a1a1a; padding: 20px; border-radius: 8px; margin-top: 20px; border: 1px solid #333; line-height: 1.6; text-align: left;">
+            <h3 style="color: var(--accent-red); margin-top: 0;">🚀 Access Help: How to Make a New Google Account</h3>
+            <p style="color: #fff;">If a movie won't load, you may need to sign in. To create a fresh account for watching:</p>
+            <ol style="color: #ccc;">
+                <li>Go to <strong><a href="https://accounts.google.com/signup" target="_blank" style="color: var(--accent-red); text-decoration: underline;">accounts.google.com/signup</a></strong>.</li>
+                <li>Enter your name and choose a new username/email.</li>
+                <li>Create a strong password and add your birthday.</li>
+                <li>Once signed in, refresh this page to watch your movies!</li>
+            </ol>
+        </div>
+    </div>
+</div>
 
     <h2>Superhero Movies</h2>
     <div class="movie-grid">
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1_qJqk2Ss1f45puz3xGQcdD1NxM3ipupj/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMjM2NTQ5Mzc2M15BMl5BanBnXkFtZTgwNTUxNTAxMDE@._V1_.jpg" alt="Ant-Man 1"></div>
-            <div class="movie-info"><div class="movie-title">Ant-Man 1</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">Ant-Man</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1AstKQ5KLX94k7RFIlsu2St9um8sS_w_M/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BYzg0OWM4ZWYtNmZlMy00MzA0LWEwMzAtNzcyZTE5YzFmNWIwXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg" alt="Ant-Man 2"></div>
-            <div class="movie-info"><div class="movie-title">Ant-Man 2</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">Ant-Man and the Wasp</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1AW3Zm8256tzZ-37lmgYmIGse4knu8IdA/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMzYyZjg2Y2UtNWMxYy00Y2U3LWI4MTAtN2I1NzI2MDU1NzkxXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg" alt="Ant-Man 3"></div>
-            <div class="movie-info"><div class="movie-title">Ant-Man 3</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">Ant-Man: Quantumania</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1_g_fq1MEbqXuapY_dxXSdohAx8zmxwOX/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg" alt="The Dark Knight"></div>
             <div class="movie-info"><div class="movie-title">The Dark Knight</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1I94qWG6AAUfBzuLmksfBppnOP8Tu0-jp/preview')">
-            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3MTE@._V1_.jpg" alt="The Amazing Spider-Man 2"></div>
+            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMjMwNDkxMTgzOF5BMl5BanBnXkFtZTgwNTkwNTQ3MTE@._V1_.jpg" alt="ASM 2"></div>
             <div class="movie-info"><div class="movie-title">The Amazing Spider-Man 2</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1u5u_-G0KReiP4Q4eHvx7qwb4jv6ZARdh/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BYTE0Yjc1NzUtMjFjMC00Y2I3LTg4N2ItN2U5Y2Y3YmU0OTQzXkEyXkFqcGdeQXVyNjg2NjgzMjg@._V1_.jpg" alt="Shazam"></div>
-            <div class="movie-info"><div class="movie-title">Shazam</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">Shazam!</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/0B-uFeCO4yCFIZXNnLUg3cVdiU3M/preview')">
             <div class="poster-wrapper"><img src="http://www.impawards.com/2017/posters/guardians_of_the_galaxy_vol_two.jpg" alt="GOTG 2"></div>
@@ -226,24 +257,26 @@
             <div class="movie-info"><div class="movie-title">X-Men Origins: Wolverine</div><button class="watch-btn">Watch Now</button></div>
         </div>
     </div>
+    
+    
 
-    <h2>Action Movies</h2>
+    <h2>Action & Thriller</h2>
     <div class="movie-grid">
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1X9Kflcg0LuRjceV6JghCzs49px8cRTIk/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_.jpg" alt="John Wick 1"></div>
-            <div class="movie-info"><div class="movie-title">John Wick 1</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">John Wick</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1gzsZEVTNEb93tSa0nuzlpR2n20D4Dyx9/preview')">
             <div class="poster-wrapper"><img src="http://www.impawards.com/2017/posters/john_wick_chapter_two.jpg" alt="John Wick 2"></div>
-            <div class="movie-info"><div class="movie-title">John Wick 2</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">John Wick: Chapter 2</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1CsIZrKGXn557DdOJrdz5ty7nkg0i4CWR/preview')">
             <div class="poster-wrapper"><img src="http://www.impawards.com/2019/posters/john_wick_chapter_three_gallery_ver1.jpg" alt="John Wick 3"></div>
-            <div class="movie-info"><div class="movie-title">John Wick 3</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">John Wick: Chapter 3</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/10LUlcX6Hu9pn3c3xmPlfJOf20Qjwgxq_/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMDExZGMyOTMtMDgyYi00NGIwLWJhMTEtOTdkZTRjNmZiMTEwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" alt="John Wick 4"></div>
-            <div class="movie-info"><div class="movie-title">John Wick 4</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">John Wick: Chapter 4</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/16tKuEYtxi7EeKtX3yZZR-nXgZ_oGTxXS/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMjA1MTc1NTUxNF5BMl5BanBnXkFtZTcwNDQyNDU5Mg@@._V1_.jpg" alt="Avatar"></div>
@@ -251,10 +284,10 @@
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1NPB0oCsIuiPAc471b_XOGDnchbCZ72yh/preview')">
             <div class="poster-wrapper"><img src="http://www.impawards.com/2019/posters/ford_v_ferrari_ver6.jpg" alt="Ford v Ferrari"></div>
-            <div class="movie-info"><div class="movie-title">Ford V Ferrari</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">Ford v Ferrari</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1nmGDHktR96jkaYl2lf-d-XTtNtFh4PTv/preview')">
-            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZGQ0LThhMWUtM2U0NzFlMmU4MzEwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg" alt="Top Gun Maverick"></div>
+            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZGQ0LThhMWUtM2U0NzFlMmU4MzEwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg" alt="Top Gun"></div>
             <div class="movie-info"><div class="movie-title">Top Gun: Maverick</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/13d5gq3Kx3koobcfRTVyH9Hhum3s8Fxag/preview')">
@@ -262,12 +295,12 @@
             <div class="movie-info"><div class="movie-title">Venom: Let There Be Carnage</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1ZwP0FLdFdAoeskqGvQYX5CwqEeSFWS1G/preview')">
-            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg" alt="Back to the Future"></div>
-            <div class="movie-info"><div class="movie-title">Back to The Future</div><button class="watch-btn">Watch Now</button></div>
+            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg" alt="BTTF"></div>
+            <div class="movie-info"><div class="movie-title">Back to the Future</div><button class="watch-btn">Watch Now</button></div>
         </div>
     </div>
 
-    <h2>Animated & Comedy</h2>
+    <h2>Animated & Family</h2>
     <div class="movie-grid">
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1ZJWkqS6Y5XO6bRrgCH88rgQZR848Lr8V/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMTg2NjMyMzkwOF5BMl5BanBnXkFtZTgwMzExMzcxNTE@._V1_.jpg" alt="Minions"></div>
@@ -283,7 +316,7 @@
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/18k9mTY7zM45nsFrfAmu5thQH6ao77O--/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMjMwNDkwNDM1MV5BMl5BanBnXkFtZTgwNzAyNjIyNjM@._V1_.jpg" alt="Spider-Verse"></div>
-            <div class="movie-info"><div class="movie-title">Into the Spider-Verse</div><button class="watch-btn">Watch Now</button></div>
+            <div class="movie-info"><div class="movie-title">Spider-Man: Into the Spider-Verse</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/17mETnDL0Z4M-ke4aw9Oouuf9w8xQkfIb/preview')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BNjE5NzA4ZDctOTJkZi00NzM0LTkwOTYtNmY5DA297Be6M2ExXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg" alt="Encanto"></div>
@@ -293,17 +326,21 @@
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BNjRjNzFmYzEtODlhMi00ZTI4LTk1NmItZTM4NjdkNWM0ZGU0XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" alt="Luca"></div>
             <div class="movie-info"><div class="movie-title">Luca</div><button class="watch-btn">Watch Now</button></div>
         </div>
+        <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1Jn-9YsKif3wVxnDfH3ZW3HwSq1iTyb6r/preview')">
+            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMDgzNGM0M2MtN2VjMi00MGE1LTliZTUtNWM2YmE3N2ExN2FlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg" alt="Space Jam"></div>
+            <div class="movie-info"><div class="movie-title">Space Jam (1996)</div><button class="watch-btn">Watch Now</button></div>
+        </div>
+    </div>
+
+    <h2>Comedy & Horror</h2>
+    <div class="movie-grid">
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1drXS4b8XjDqgQ6tIjbS7RCN1Yq8CjDLZ/preview')">
             <div class="poster-wrapper"><img src="http://www.impawards.com/2016/posters/deadpool_ver5.jpg" alt="Deadpool"></div>
             <div class="movie-info"><div class="movie-title">Deadpool</div><button class="watch-btn">Watch Now</button></div>
         </div>
         <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1gfcCCnkSzRhuIdMh2oNE3s1_G7Q_NGMM/preview')">
-            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BNWMxYTYzYWQtNGZmNy00MTg5LThhY2QtNzQ5YzE3MzBhZDM2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg" alt="Friday the 13th"></div>
-            <div class="movie-info"><div class="movie-title">Friday The 13th</div><button class="watch-btn">Watch Now</button></div>
-        </div>
-        <div class="movie-card" onclick="openMovie('https://drive.google.com/file/d/1Jn-9YsKif3wVxnDfH3ZW3HwSq1iTyb6r/preview')">
-            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMDgzNGM0M2MtN2VjMi00MGE1LTliZTUtNWM2YmE3N2ExN2FlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg" alt="Space Jam"></div>
-            <div class="movie-info"><div class="movie-title">Space Jam (1996)</div><button class="watch-btn">Watch Now</button></div>
+            <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BNWMxYTYzYWQtNGZmNy00MTg5LThhY2QtNzQ5YzE3MzBhZDM2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg" alt="Friday 13th"></div>
+            <div class="movie-info"><div class="movie-title">Friday the 13th</div><button class="watch-btn">Watch Now</button></div>
         </div>
     </div>
 
@@ -314,17 +351,6 @@
         <span class="close-btn" onclick="closeMovie()">✕ CLOSE PLAYER</span>
         <div class="video-container">
             <iframe id="moviePlayer" src="" allow="autoplay; fullscreen"></iframe>
-        </div>
-        
-        <div class="instructions-box">
-            <h3>🚀 Access Help: How to Make a New Google Account</h3>
-            <p>If a movie won't load, you may need to sign in. To create a fresh account for watching:</p>
-            <ol>
-                <li>Go to <strong>[accounts.google.com/signup](https://accounts.google.com/signup)</strong>.</li>
-                <li>Enter your name and choose a new username/email.</li>
-                <li>Create a strong password and add your birthday.</li>
-                <li>Once signed in, refresh this page to watch your movies!</li>
-            </ol>
         </div>
     </div>
 </div>
@@ -338,19 +364,56 @@
     function openMovie(url) {
         modal.style.display = "block";
         player.src = url;
-        document.body.style.overflow = "hidden"; // Prevent background scroll
+        document.body.style.overflow = "hidden";
     }
 
     function closeMovie() {
         modal.style.display = "none";
         player.src = "";
-        document.body.style.overflow = "auto"; // Re-enable background scroll
+        document.body.style.overflow = "auto";
     }
 
-    // Close if user clicks background (the blurred part)
     window.onclick = function(event) {
         if (event.target == modal) { closeMovie(); }
     }
+</script>
+
+<script>
+    (function() {
+        const saved = JSON.parse(localStorage.getItem('hcSettings'));
+        if (saved) {
+            // 1. Apply Accent Color
+            if (saved.accent) {
+                document.documentElement.style.setProperty('--accent-red', saved.accent);
+            }
+            
+            // 2. Apply Font
+            if (saved.font) {
+                document.body.style.fontFamily = saved.font;
+            }
+            
+            // 3. Apply Tab Cloaking (Name & Icon)
+            if (saved.tabName) {
+                document.title = saved.tabName;
+            }
+            if (saved.tabIcon) {
+                let link = document.querySelector("link[rel~='icon']");
+                if (!link) {
+                    link = document.createElement('link');
+                    link.rel = 'icon';
+                    document.head.appendChild(link);
+                }
+                link.href = saved.tabIcon;
+            }
+            
+            // 4. Panic Button (Escape Key)
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && saved.panic) {
+                    window.location.href = saved.panic;
+                }
+            });
+        }
+    })();
 </script>
 
 </body>
