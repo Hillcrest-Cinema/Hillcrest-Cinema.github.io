@@ -18,152 +18,72 @@
             background-color: var(--bg-black);
             color: var(--text-main);
             font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+            margin: 0; padding: 0; overflow-x: hidden;
         }
 
         header {
             background-color: #000;
             padding: 20px 5%;
             border-bottom: 3px solid var(--accent-red);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
         .header-left { display: flex; align-items: center; gap: 15px; }
-        .header-left img { height: 50px; width: auto; }
+        .header-left img { height: 50px; }
+        header h1 { color: var(--accent-red); margin: 0; text-transform: uppercase; letter-spacing: 3px; font-size: 1.8rem; }
 
-        header h1 {
-            color: var(--accent-red);
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 1.8rem;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-        }
-
-        nav { display: flex; gap: 10px; flex-wrap: wrap; }
+        nav { display: flex; gap: 10px; }
         .nav-link {
             background-color: var(--accent-red);
-            color: white;
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 0.85rem;
-            transition: 0.3s;
+            color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; font-size: 0.85rem;
         }
-        .nav-link:hover { background-color: white; color: var(--accent-red); }
 
         .container { padding: 40px 5%; }
-
         .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 50px;
-            margin-bottom: 25px;
-            border-left: 5px solid var(--accent-red);
-            padding-left: 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 50px; margin-bottom: 25px; border-left: 5px solid var(--accent-red); padding-left: 15px;
         }
-        .section-header:first-of-type { margin-top: 0; }
-
-        h2 { font-size: 1.8rem; margin: 0; color: var(--text-main); }
 
         #gameSearch {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            outline: none;
-            width: 280px;
-            transition: 0.3s;
+            background: #1a1a1a; border: 1px solid #333; color: white; padding: 10px 20px; border-radius: 25px; width: 280px;
         }
 
         .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-            width: 100%;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px;
         }
 
         .game-card {
-            background-color: var(--card-bg);
-            border: 1px solid #222;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: 0.3s;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
+            background-color: var(--card-bg); border: 1px solid #222; border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.3s;
+            display: flex; flex-direction: column;
         }
-        .game-card:hover {
-            border-color: var(--accent-red);
-            transform: translateY(-5px);
-        }
+        .game-card:hover { border-color: var(--accent-red); transform: translateY(-5px); }
 
-        .poster-wrapper {
-            width: 100%;
-            aspect-ratio: 2/3;
-            background: #111;
-            overflow: hidden;
-        }
+        .poster-wrapper { width: 100%; aspect-ratio: 2/3; background: #111; overflow: hidden; }
         .poster-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
         .game-info { padding: 10px; text-align: center; flex-grow: 1; }
-        .game-title {
-            font-weight: bold;
-            font-size: 0.8rem;
-            margin-bottom: 8px;
-            min-height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-dim);
-        }
+        .game-title { font-weight: bold; font-size: 0.8rem; margin-bottom: 8px; color: var(--text-dim); min-height: 32px; display: flex; align-items: center; justify-content: center; }
 
         .play-btn {
-            width: 100%;
-            background-color: var(--accent-red);
-            color: white;
-            padding: 6px 0;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.7rem;
-            cursor: pointer;
+            width: 100%; background-color: var(--accent-red); color: white; padding: 6px 0; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;
         }
 
         .modal {
-            display: none; 
-            position: fixed;
-            z-index: 9999;
+            display: none; position: fixed; z-index: 9999;
             left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.95);
         }
         .modal-content {
-            position: relative;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 95%; height: 85vh;
-            max-width: 1200px;
-            background: #000;
-            border: 2px solid var(--accent-red);
+            position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 95%; height: 85vh; max-width: 1100px;
+            background: #000; border: 2px solid var(--accent-red);
         }
         .close-btn {
-            position: absolute;
-            top: -35px; right: 0;
-            color: white; font-size: 18px; cursor: pointer;
-            font-weight: bold;
+            position: absolute; top: -35px; right: 0; color: white; font-size: 18px; cursor: pointer; font-weight: bold;
         }
-
-        iframe { width: 100%; height: 100%; border: none; }
+        
+        iframe { width: 100%; height: 100%; border: none; background: #000; }
         footer { text-align: center; padding: 40px; color: #444; border-top: 1px solid #222; }
     </style>
 </head>
@@ -176,44 +96,41 @@
     </div>
     <nav>
         <a href="index.html" class="nav-link">Movies</a>
-        <a href="forms.html" class="nav-link">Report</a>
-        <a href="links.html" class="nav-link">Links</a>
         <a href="settings.html" class="nav-link">Settings</a>
     </nav>
 </header>
 
 <div class="container">
-
     <div class="section-header">
         <h2>Retro Remakes</h2>
         <input type="text" id="gameSearch" placeholder="Search arcade..." onkeyup="searchGames()">
     </div>
     <div class="game-grid">
-        <div class="game-card" data-title="Asteroids" onclick="openGame('https://www.khanacademy.org/computer-programming/asteroids-for-ka-contest/6204306864390144/show')">
+        <div class="game-card" data-title="Asteroids" onclick="loadKA('6204306864390144')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Asteroids_arcade_logo.png"></div>
             <div class="game-info"><div class="game-title">Asteroids</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Dig Dug" onclick="openGame('https://www.khanacademy.org/computer-programming/dig-dug/5464941041156096/show')">
+        <div class="game-card" data-title="Dig Dug" onclick="loadKA('5464941041156096')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Dig_Dug_Logo.png"></div>
             <div class="game-info"><div class="game-title">Dig-Dug</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Pac-Man" onclick="openGame('https://www.khanacademy.org/computer-programming/pac-man/6052626340380672/show')">
+        <div class="game-card" data-title="Pac-Man" onclick="loadKA('6052626340380672')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Pac-Man_Introduction_Logo.svg/1200px-Pac-Man_Introduction_Logo.svg.png"></div>
             <div class="game-info"><div class="game-title">Pac-Man</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Space Invaders" onclick="openGame('https://www.khanacademy.org/computer-programming/space-invaders/4921519550889984/show')">
+        <div class="game-card" data-title="Space Invaders" onclick="loadKA('4921519550889984')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Space_Invaders_logo.svg/1200px-Space_Invaders_logo.svg.png"></div>
             <div class="game-info"><div class="game-title">Space Invaders</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Q-Bert" onclick="openGame('https://www.khanacademy.org/computer-programming/q-bert/4762397856628736/show')">
+        <div class="game-card" data-title="Q-Bert" onclick="loadKA('4762397856628736')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Qbert_logo.svg/1200px-Qbert_logo.svg.png"></div>
             <div class="game-info"><div class="game-title">Q-Bert</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Centipede" onclick="openGame('https://www.khanacademy.org/computer-programming/centipede-for-contest/6640562274435072/show')">
+        <div class="game-card" data-title="Centipede" onclick="loadKA('6640562274435072')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Centipede_logo.png/1200px-Centipede_logo.png"></div>
             <div class="game-info"><div class="game-title">Centipede</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Donkey Kong" onclick="openGame('https://www.khanacademy.org/computer-programming/donkey-kong/5514168430362624/show')">
+        <div class="game-card" data-title="Donkey Kong" onclick="loadKA('5514168430362624')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Donkey_Kong_Logo.svg/1200px-Donkey_Kong_Logo.svg.png"></div>
             <div class="game-info"><div class="game-title">Donkey-Kong</div><button class="play-btn">Play</button></div>
         </div>
@@ -221,75 +138,75 @@
 
     <div class="section-header"><h2>KA Games</h2></div>
     <div class="game-grid">
-        <div class="game-card" data-title="Apocalypse Sim" onclick="openGame('https://www.khanacademy.org/computer-programming/apocalypse-simulator/5741932413353984/show')">
+        <div class="game-card" data-title="Apocalypse Sim" onclick="loadKA('5741932413353984')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/5e66297316886e24699b6697079f8263.png"></div>
             <div class="game-info"><div class="game-title">Apocalypse Sim</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Among Us" onclick="openGame('https://www.khanacademy.org/computer-programming/among-us-completed-game/5779640557715456/show')">
+        <div class="game-card" data-title="Among Us" onclick="loadKA('5779640557715456')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_Icon.png"></div>
             <div class="game-info"><div class="game-title">Among Us</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Battle Royale" onclick="openGame('https://www.khanacademy.org/computer-programming/battle-royale/6732391498039296/show')">
+        <div class="game-card" data-title="Battle Royale" onclick="loadKA('6732391498039296')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/f26034e34e2c8845a77042be6a6552a9.png"></div>
             <div class="game-info"><div class="game-title">Battle Royale</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Bounce" onclick="openGame('https://www.khanacademy.org/computer-programming/bounce-a-platformer-jouney-beta/6408747040292864/show')">
+        <div class="game-card" data-title="Bounce" onclick="loadKA('6408747040292864')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/86c636f3ca85c18c187d97607b301a93.png"></div>
             <div class="game-info"><div class="game-title">Bounce (BETA)</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Bullet Boi" onclick="openGame('https://www.khanacademy.org/computer-programming/bulletboi-final-release/5948419921100800/show')">
+        <div class="game-card" data-title="Bullet Boi" onclick="loadKA('5948419921100800')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/b1876402283e390c29f224971c26f04c.png"></div>
             <div class="game-info"><div class="game-title">Bullet Boi</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Contamination Breach" onclick="openGame('https://www.khanacademy.org/computer-programming/contamination-breach-iv/6032293476990976/show')">
+        <div class="game-card" data-title="Contamination Breach" onclick="loadKA('6032293476990976')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/8e9d2402120e281577484a0d912444d3.png"></div>
             <div class="game-info"><div class="game-title">Contamination Breach IV</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Don't Fall" onclick="openGame('https://www.khanacademy.org/computer-programming/dont-fall/6412818720440320/show')">
+        <div class="game-card" data-title="Don't Fall" onclick="loadKA('6412818720440320')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/a1239a34988f5798e85873998782f059.png"></div>
             <div class="game-info"><div class="game-title">Don't Fall</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Go Far" onclick="openGame('https://www.khanacademy.org/computer-programming/go-far/6694231293100032/show')">
+        <div class="game-card" data-title="Go Far" onclick="loadKA('6694231293100032')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/f5f9e80c498308d2489e24749f8544d6.png"></div>
             <div class="game-info"><div class="game-title">Go Far</div><button class="play-btn">Play Now</button></div>
         </div>
-        <div class="game-card" data-title="Halved" onclick="openGame('https://www.khanacademy.org/computer-programming/halved-50-levels/5404601612943360/show')">
+        <div class="game-card" data-title="Halved" onclick="loadKA('5404601612943360')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/86c636f3ca85c18c187d97607b301a93.png"></div>
             <div class="game-info"><div class="game-title">Halved</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Star Wars" onclick="openGame('https://www.khanacademy.org/computer-programming/star-warsgame/5670640987553792/show')">
+        <div class="game-card" data-title="Star Wars" onclick="loadKA('5670640987553792')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1200px-Star_Wars_Logo.svg.png"></div>
             <div class="game-info"><div class="game-title">Star-Wars Simulator</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Slender" onclick="openGame('https://www.khanacademy.org/computer-programming/slenderthe-game/6036567084892160/show')">
+        <div class="game-card" data-title="Slender" onclick="loadKA('6036567084892160')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/8e9d2402120e281577484a0d912444d3.png"></div>
             <div class="game-info"><div class="game-title">Slender the Game</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Spiders" onclick="openGame('https://www.khanacademy.org/computer-programming/ssspiders-game/6694242936471552/show')">
+        <div class="game-card" data-title="Spiders" onclick="loadKA('6694242936471552')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/I/61p-LqI793L.png"></div>
             <div class="game-info"><div class="game-title">sssspiders</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Rodeo Stampede" onclick="openGame('https://www.khanacademy.org/computer-programming/rodeo-stampede-3d/5218478237696000/show')">
+        <div class="game-card" data-title="Rodeo Stampede" onclick="loadKA('5218478237696000')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/f5f9e80c498308d2489e24749f8544d6.png"></div>
             <div class="game-info"><div class="game-title">Rodeo Stampede 3D</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Rocket Wars" onclick="openGame('https://www.khanacademy.org/computer-programming/rocket-wars-game/5341762051162112/show')">
+        <div class="game-card" data-title="Rocket Wars" onclick="loadKA('5341762051162112')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/b1876402283e390c29f224971c26f04c.png"></div>
             <div class="game-info"><div class="game-title">Rocket Wars</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Karlson 3D" onclick="openGame('https://www.khanacademy.org/computer-programming/spin-off-of-karlson-3d-dx/5182948024041472/show')">
+        <div class="game-card" data-title="Karlson 3D" onclick="loadKA('5182948024041472')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/a1239a34988f5798e85873998782f059.png"></div>
             <div class="game-info"><div class="game-title">Karlson 3D DX</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Space Program" onclick="openGame('https://www.khanacademy.org/computer-programming/this-is-where-i-do-the-big-updates/6022039477/show')">
+        <div class="game-card" data-title="Space Program" onclick="loadKA('6022039477')">
             <div class="poster-wrapper"><img src="https://cdn.iconscout.com/icon/free/png-256/free-nasa-logo-icon-download-in-svg-png-gif-file-formats--technology-social-media-company-vol-5-pack-logos-icons-226410.png"></div>
             <div class="game-info"><div class="game-title">KA Space Program</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Flicker" onclick="openGame('https://www.khanacademy.org/computer-programming/flicker/5824013771685888/show')">
+        <div class="game-card" data-title="Flicker" onclick="loadKA('5824013771685888')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/8e9d2402120e281577484a0d912444d3.png"></div>
             <div class="game-info"><div class="game-title">Flicker (Scary)</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="3D Spiderman" onclick="openGame('https://www.khanacademy.org/computer-programming/3d-spiderman-game-final-update/5015617567408128/show')">
+        <div class="game-card" data-title="3D Spiderman" onclick="loadKA('5015617567408128')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Spider-man_insomniac_logo.png"></div>
             <div class="game-info"><div class="game-title">3D Spiderman</div><button class="play-btn">Play Now</button></div>
         </div>
@@ -297,70 +214,69 @@
 
     <div class="section-header"><h2>Desmos Collection</h2></div>
     <div class="game-grid">
-        <div class="game-card" data-title="Geometry Dash" onclick="openGame('https://www.desmos.com/calculator/y2owyqpttb?embed')">
+        <div class="game-card" data-title="Geometry Dash" onclick="openUrl('https://www.desmos.com/calculator/y2owyqpttb?embed')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/en/3/35/Geometry_Dash_Logo.PNG"></div>
             <div class="game-info"><div class="game-title">Geometry Dash</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Cookie Clicker" onclick="openGame('https://www.desmos.com/calculator/zdbcptn4aa?embed')">
+        <div class="game-card" data-title="Cookie Clicker" onclick="openUrl('https://www.desmos.com/calculator/zdbcptn4aa?embed')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Cookie_Clicker_logo.png/250px-Cookie_Clicker_logo.png"></div>
             <div class="game-info"><div class="game-title">Cookie Clicker</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Desmos MMORPG" onclick="openGame('https://www.desmos.com/calculator/bc5570b071?embed')">
+        <div class="game-card" data-title="Desmos MMORPG" onclick="openUrl('https://www.desmos.com/calculator/bc5570b071?embed')">
             <div class="poster-wrapper"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1vcf.png"></div>
             <div class="game-info"><div class="game-title">Desmos MMORPG</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Rhythm Game" onclick="openGame('https://www.desmos.com/calculator/76229930bb?embed')">
+        <div class="game-card" data-title="Rhythm Game" onclick="openUrl('https://www.desmos.com/calculator/76229930bb?embed')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/M/MV5BMGU5YTRjY2UtOGVlNi00YmI0LWJjMjAtN2U1ZGI3YmU0NTAzXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg"></div>
             <div class="game-info"><div class="game-title">Rhythm Game V3</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Tunnel Game" onclick="openGame('https://www.desmos.com/calculator/0fa47ce28d?embed')">
+        <div class="game-card" data-title="Tunnel Game" onclick="openUrl('https://www.desmos.com/calculator/0fa47ce28d?embed')">
             <div class="poster-wrapper"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=pad,f=auto/b73f8487968494918e984f481c40a582.png"></div>
             <div class="game-info"><div class="game-title">Tunnel Game</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Snake" onclick="openGame('https://www.desmos.com/calculator/3gwkf3j6c8?embed')">
+        <div class="game-card" data-title="Snake" onclick="openUrl('https://www.desmos.com/calculator/3gwkf3j6c8?embed')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/I/41r8EclFkML.png"></div>
             <div class="game-info"><div class="game-title">Desmos Snake</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Minesweeper" onclick="openGame('https://www.desmos.com/calculator/n5mfhupdee?embed')">
+        <div class="game-card" data-title="Minesweeper" onclick="openUrl('https://www.desmos.com/calculator/n5mfhupdee?embed')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Minesweeper_Icon.svg/1200px-Minesweeper_Icon.svg.png"></div>
             <div class="game-info"><div class="game-title">DesmosSweeper</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Chess 3D" onclick="openGame('https://www.desmos.com/3d/7kjsmihuf7?embed')">
+        <div class="game-card" data-title="Chess 3D" onclick="openUrl('https://www.desmos.com/3d/7kjsmihuf7?embed')">
             <div class="poster-wrapper"><img src="https://images.chesscomfiles.com/uploads/v1/article/24859.62e12891.630x354o.13a7e5029302.jpeg"></div>
             <div class="game-info"><div class="game-title">Chess 3D</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Reversi" onclick="openGame('https://www.desmos.com/calculator/gqejbchd2a?embed')">
+        <div class="game-card" data-title="Reversi" onclick="openUrl('https://www.desmos.com/calculator/gqejbchd2a?embed')">
             <div class="poster-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Othello-Game.jpg/800px-Othello-Game.jpg"></div>
             <div class="game-info"><div class="game-title">Reversi</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Billiards" onclick="openGame('https://www.desmos.com/calculator/xtks5bwsdy?embed')">
+        <div class="game-card" data-title="Billiards" onclick="openUrl('https://www.desmos.com/calculator/xtks5bwsdy?embed')">
             <div class="poster-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6A7y_I_8B-8Xv5HjG5y5R_v_N-m1Y-P-N1A&s"></div>
             <div class="game-info"><div class="game-title">Billiards</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Poker" onclick="openGame('https://www.desmos.com/calculator/rhhg0c30j8?embed')">
+        <div class="game-card" data-title="Poker" onclick="openUrl('https://www.desmos.com/calculator/rhhg0c30j8?embed')">
             <div class="poster-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz-8Y77I4eA1Lp5P2_PzP0Z1N_jR4vG_Nnsw&s"></div>
             <div class="game-info"><div class="game-title">Desmos Poker</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Pinball" onclick="openGame('https://www.desmos.com/calculator/iyd75qbp6t?embed')">
+        <div class="game-card" data-title="Pinball" onclick="openUrl('https://www.desmos.com/calculator/iyd75qbp6t?embed')">
             <div class="poster-wrapper"><img src="https://store-images.s-microsoft.com/image/apps.38600.9007199266247071.0f3933c0-36e7-47b8-9366-2395561571d9.a2b489d7-848e-4903-81e0-474c6d9962e7"></div>
             <div class="game-info"><div class="game-title">Pinball</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Golf" onclick="openGame('https://www.desmos.com/calculator/lrci8ssfrc?embed')">
+        <div class="game-card" data-title="Golf" onclick="openUrl('https://www.desmos.com/calculator/lrci8ssfrc?embed')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/I/616vR7N6F0L.png"></div>
             <div class="game-info"><div class="game-title">Desgolf</div><button class="play-btn">Play</button></div>
         </div>
-        <div class="game-card" data-title="Hamster Game" onclick="openGame('https://www.desmos.com/geometry/x6sdzaqfqr?embed')">
+        <div class="game-card" data-title="Hamster Game" onclick="openUrl('https://www.desmos.com/geometry/x6sdzaqfqr?embed')">
             <div class="poster-wrapper"><img src="https://m.media-amazon.com/images/I/61p-LqI793L.png"></div>
             <div class="game-info"><div class="game-title">Hamster Game</div><button class="play-btn">Play</button></div>
         </div>
     </div>
-
 </div>
 
 <div id="gameModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeGame()">✕ EXIT ARCADE</span>
-        <iframe id="gamePlayer" src="" allow="autoplay; fullscreen"></iframe>
+        <iframe id="gameIframe" sandbox="allow-pointer-lock allow-same-origin allow-scripts" src="" allow="autoplay; fullscreen"></iframe>
     </div>
 </div>
 
@@ -368,26 +284,32 @@
 
 <script>
     const modal = document.getElementById('gameModal');
-    const player = document.getElementById('gamePlayer');
+    const iframe = document.getElementById('gameIframe');
 
-    function openGame(url) {
+    // FIXED: Build the kasandbox URL with the program ID
+    function loadKA(id) {
         modal.style.display = "block";
-        player.src = url;
         document.body.style.overflow = "hidden";
+        // This is the clean execution engine URL you requested
+        iframe.src = `https://www.kasandbox.org/computer-programming/exec/pjs?embedded=1&lang=en&v=260225-0009-1032fa06c945&host=www.khanacademy.org&id=${id}`;
+    }
+
+    function openUrl(url) {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+        iframe.src = url;
     }
 
     function closeGame() {
         modal.style.display = "none";
-        player.src = "";
+        iframe.src = "";
         document.body.style.overflow = "auto";
     }
 
     function searchGames() {
         const input = document.getElementById('gameSearch').value.toLowerCase();
-        const cards = document.querySelectorAll('.game-card');
-        cards.forEach(card => {
-            const title = card.getAttribute('data-title').toLowerCase();
-            card.style.display = title.includes(input) ? "flex" : "none";
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.style.display = card.getAttribute('data-title').toLowerCase().includes(input) ? "flex" : "none";
         });
     }
 
